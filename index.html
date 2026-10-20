@@ -3,110 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de Eventos - Colegio Bolívar</title>
+    <title>Contador de Eventos | Colegio Bolívar</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f4f8;
-            color: #1e293b;
+        * {
             margin: 0;
-            padding: 50px 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #07111f;
+            color: #eaf2ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .container {
-            max-width: 450px;
-            margin: 0 auto;
-            padding: 35px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 30px;
+            text-align: center;
+            background: #101e33;
+            border: 1px solid #243b5a;
+            border-radius: 20px;
+            box-shadow: 0 0 35px rgba(0, 225, 255, 0.08);
         }
 
         h1 {
-            color: #173b70;
-            font-size: 28px;
+            color: #00e5ff;
+            font-size: 30px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
         }
 
         p {
-            font-size: 16px;
+            color: #a8bad3;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .label {
+            margin-top: 35px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            color: #8299b8;
         }
 
         #contador {
-            font-size: 64px;
-            font-weight: bold;
-            color: #173b70;
-            margin: 25px 0;
+            font-size: 82px;
+            font-weight: 700;
+            color: #39ffb6;
+            margin: 10px 0 30px;
+            text-shadow: 0 0 20px rgba(57, 255, 182, 0.35);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
         button {
-            padding: 12px 22px;
-            margin: 6px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:focus-visible {
+            outline: 2px solid white;
+            outline-offset: 4px;
         }
 
         #sumar {
-            background-color: #173b70;
-            color: white;
+            color: #06141d;
+            background: #00e5ff;
+            box-shadow: 0 0 16px rgba(0, 229, 255, 0.2);
         }
 
         #sumar:hover {
-            background-color: #2456a0;
+            background: #66f0ff;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
         }
 
         #restar {
-            background-color: #e2e8f0;
-            color: #1e293b;
+            color: #39ffb6;
+            background: #142c35;
+            border-color: #39ffb6;
         }
 
         #restar:hover {
-            background-color: #cbd5e1;
+            background: #1c4146;
+            box-shadow: 0 0 18px rgba(57, 255, 182, 0.15);
         }
 
         #reiniciar {
-            background-color: #dc2626;
-            color: white;
+            color: #ff6b81;
+            background: #321b2b;
+            border-color: #ff4d6d;
         }
 
         #reiniciar:hover {
-            background-color: #b91c1c;
+            background: #492033;
+            box-shadow: 0 0 18px rgba(255, 77, 109, 0.2);
         }
 
         footer {
-            margin-top: 25px;
-            font-size: 13px;
-            color: #64748b;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #243b5a;
+            color: #7187a5;
+            font-size: 12px;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            #contador {
+                font-size: 68px;
+            }
         }
     </style>
 </head>
-<body>
 
-    <div class="container">
+<body>
+    <main class="container">
         <h1>Colegio Bolívar</h1>
         <p>Contador interactivo de eventos escolares</p>
 
-        <div id="contador" aria-live="polite">0</div>
+        <p class="label">Eventos registrados</p>
+        <div id="contador" aria-live="polite" aria-atomic="true">0</div>
 
-        <button id="sumar" onclick="incrementar()">
-            + Registrar evento
-        </button>
+        <div class="buttons">
+            <button id="sumar" onclick="incrementar()">
+                + Registrar evento
+            </button>
 
-        <button id="restar" onclick="decrementar()">
-            − Restar
-        </button>
+            <button id="restar" onclick="decrementar()">
+                − Restar evento
+            </button>
 
-        <button id="reiniciar" onclick="reiniciar()">
-            Reiniciar contador
-        </button>
+            <button id="reiniciar" onclick="reiniciar()">
+                Reiniciar contador
+            </button>
+        </div>
 
         <footer>
-            Colegio Bolívar | Registro de eventos
+            Colegio Bolívar · Registro de eventos
         </footer>
-    </div>
+    </main>
 
     <script>
         let clicks = 0;
@@ -134,6 +206,5 @@
             actualizarContador();
         }
     </script>
-
 </body>
 </html>

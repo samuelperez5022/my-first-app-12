@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Eventos - Colegio Bolívar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f4f8;
+            color: #1e293b;
+            margin: 0;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 35px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #173b70;
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        #contador {
+            font-size: 64px;
+            font-weight: bold;
+            color: #173b70;
+            margin: 25px 0;
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 6px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #sumar {
+            background-color: #173b70;
+            color: white;
+        }
+
+        #sumar:hover {
+            background-color: #2456a0;
+        }
+
+        #restar {
+            background-color: #e2e8f0;
+            color: #1e293b;
+        }
+
+        #restar:hover {
+            background-color: #cbd5e1;
+        }
+
+        #reiniciar {
+            background-color: #dc2626;
+            color: white;
+        }
+
+        #reiniciar:hover {
+            background-color: #b91c1c;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Colegio Bolívar</h1>
+        <p>Contador interactivo de eventos escolares</p>
+
+        <div id="contador" aria-live="polite">0</div>
+
+        <button id="sumar" onclick="incrementar()">
+            + Registrar evento
+        </button>
+
+        <button id="restar" onclick="decrementar()">
+            − Restar
+        </button>
+
+        <button id="reiniciar" onclick="reiniciar()">
+            Reiniciar contador
+        </button>
+
+        <footer>
+            Colegio Bolívar | Registro de eventos
+        </footer>
+    </div>
+
+    <script>
+        let clicks = 0;
+
+        const contador = document.getElementById("contador");
+
+        function actualizarContador() {
+            contador.textContent = clicks;
+        }
+
+        function incrementar() {
+            clicks++;
+            actualizarContador();
+        }
+
+        function decrementar() {
+            if (clicks > 0) {
+                clicks--;
+                actualizarContador();
+            }
+        }
+
+        function reiniciar() {
+            clicks = 0;
+            actualizarContador();
+        }
+    </script>
+
+</body>
+</html>
